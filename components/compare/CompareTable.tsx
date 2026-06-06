@@ -28,35 +28,65 @@ const rows: Row[] = [
     label: 'Annual Fees',
     key: 'annualFees',
     format: (v) => formatFees(v as number),
-    isBest: (vals) => vals.reduce((bi, v, i, arr) => (v !== null && (arr[bi] === null || v < arr[bi]!) ? i : bi), 0),
+    isBest: (vals) => {
+      const idx = vals.reduce((bi: number, v, i, arr) => {
+        const currentBest = arr[bi];
+        return (v !== null && (currentBest === null || v < currentBest)) ? i : bi;
+      }, 0);
+      return idx;
+    },
     type: 'number',
   },
   {
     label: 'Avg Package',
     key: 'avgPackage',
     format: (v) => (v ? formatPackage(v as number) : 'N/A'),
-    isBest: (vals) => vals.reduce((bi, v, i, arr) => (v !== null && (arr[bi] === null || v > arr[bi]!) ? i : bi), 0),
+    isBest: (vals) => {
+      const idx = vals.reduce((bi: number, v, i, arr) => {
+        const currentBest = arr[bi];
+        return (v !== null && (currentBest === null || v > currentBest)) ? i : bi;
+      }, 0);
+      return idx;
+    },
     type: 'number',
   },
   {
     label: 'Highest Package',
     key: 'highestPackage',
     format: (v) => (v ? formatPackage(v as number) : 'N/A'),
-    isBest: (vals) => vals.reduce((bi, v, i, arr) => (v !== null && (arr[bi] === null || v > arr[bi]!) ? i : bi), 0),
+    isBest: (vals) => {
+      const idx = vals.reduce((bi: number, v, i, arr) => {
+        const currentBest = arr[bi];
+        return (v !== null && (currentBest === null || v > currentBest)) ? i : bi;
+      }, 0);
+      return idx;
+    },
     type: 'number',
   },
   {
     label: 'Placement Rate',
     key: 'placementRate',
     format: (v) => (v ? `${v}%` : 'N/A'),
-    isBest: (vals) => vals.reduce((bi, v, i, arr) => (v !== null && (arr[bi] === null || v > arr[bi]!) ? i : bi), 0),
+    isBest: (vals) => {
+      const idx = vals.reduce((bi: number, v, i, arr) => {
+        const currentBest = arr[bi];
+        return (v !== null && (currentBest === null || v > currentBest)) ? i : bi;
+      }, 0);
+      return idx;
+    },
     type: 'progress',
   },
   {
     label: 'Rating',
     key: 'rating',
     format: (v) => `${(v as number).toFixed(1)}/5`,
-    isBest: (vals) => vals.reduce((bi, v, i, arr) => (v !== null && (arr[bi] === null || v > arr[bi]!) ? i : bi), 0),
+    isBest: (vals) => {
+      const idx = vals.reduce((bi: number, v, i, arr) => {
+        const currentBest = arr[bi];
+        return (v !== null && (currentBest === null || v > currentBest)) ? i : bi;
+      }, 0);
+      return idx;
+    },
     type: 'rating',
   },
   { label: 'Established', key: 'establishedYear', type: 'text' },

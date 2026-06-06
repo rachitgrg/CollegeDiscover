@@ -18,7 +18,7 @@ export async function GET(request: NextRequest) {
     const { q, category, type, state, minFees, maxFees, minRating, sortBy, page, limit } =
       parsed.data
 
-    const where: Parameters<typeof prisma.college.findMany>[0]['where'] = {}
+    const where: import('@prisma/client').Prisma.CollegeWhereInput = {}
 
     if (q) {
       where.OR = [
@@ -34,7 +34,7 @@ export async function GET(request: NextRequest) {
     if (maxFees !== undefined) where.annualFees = { ...((where.annualFees as object) ?? {}), lte: maxFees }
     if (minRating !== undefined) where.rating = { gte: minRating }
 
-    const orderBy: Parameters<typeof prisma.college.findMany>[0]['orderBy'] = (() => {
+    const orderBy: import('@prisma/client').Prisma.CollegeOrderByWithRelationInput = (() => {
       switch (sortBy) {
         case 'fees_asc': return { annualFees: 'asc' as const }
         case 'fees_desc': return { annualFees: 'desc' as const }
